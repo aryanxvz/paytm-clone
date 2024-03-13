@@ -38,6 +38,11 @@ router.post("/signup", async (res, req) => {
         userId: dbUser._id
     }, JWT_SECRET)
 
+    await Account.create({
+        userId,
+        balance: 1 + Math.random() * 10000
+    })
+
     res.json({
         message: "User created successfully",
         token: token
